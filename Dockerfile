@@ -13,6 +13,7 @@ RUN apt-get -qy update && \
       python-openssl \
       python-pip && \
     git clone https://github.com/rembo10/headphones.git $HOME && \
+    touch /etc/default/headphones && \
     apt-get -y autoremove && \
     apt-get -y clean && \
     rm -rf /var/lib/apt/lists/* && \
@@ -21,5 +22,5 @@ RUN apt-get -qy update && \
 VOLUME ["${HOME}"]
 EXPOSE 8181
 
-CMD ["python", "/opt/headphones/Headphones.py"]
+CMD ["python", "/opt/headphones/Headphones.py", "--host", "0.0.0.0"]
 
